@@ -88,7 +88,7 @@ RSpec.describe RestclientCommunicator do
   end
 
 
-  it "SEITE Unauthorized" do 
+  it "SEITE 401 Unauthorized" do 
  	#er muss der seite autoamtsich folgen
     url = "http://httpstat.us/401"
     new_get = RestclientCommunicator::Communication.new(url)
@@ -99,7 +99,7 @@ RSpec.describe RestclientCommunicator do
   end
 
 
-  it "SEITE Forbidden" do 
+  it "SEITE 403 Forbidden" do 
  	#er muss der seite autoamtsich folgen
     url = "http://httpstat.us/403"
     new_get = RestclientCommunicator::Communication.new(url)
@@ -109,7 +109,7 @@ RSpec.describe RestclientCommunicator do
     expect(new_get.body).to be_nil
   end
 
-   it "SEITE Teapot" do 
+   it "SEITE 418 Teapot" do 
  	#er muss der seite autoamtsich folgen
     url = "http://httpstat.us/418"
     new_get = RestclientCommunicator::Communication.new(url)
@@ -127,6 +127,27 @@ RSpec.describe RestclientCommunicator do
     new_get = RestclientCommunicator::Communication.new(url)
     expect(new_get.errorcode).to eq("CE9908")
     expect(new_get.http_code).to eq(413)
+    expect(new_get.response).to be_nil
+    expect(new_get.body).to be_nil
+  end
+
+
+  it "SEITE 414 RequestURITooLong" do 
+  #er muss der seite autoamtsich folgen
+    url = "http://httpstat.us/414"
+    new_get = RestclientCommunicator::Communication.new(url)
+    expect(new_get.errorcode).to eq("CE9909")
+    expect(new_get.http_code).to be_nil
+    expect(new_get.response).to be_nil
+    expect(new_get.body).to be_nil
+  end
+
+  it "SEITE 416 RequestedRangeNotSatisfiable" do 
+  #er muss der seite autoamtsich folgen
+    url = "http://httpstat.us/416"
+    new_get = RestclientCommunicator::Communication.new(url)
+    expect(new_get.errorcode).to eq("CE9910")
+    expect(new_get.http_code).to be_nil
     expect(new_get.response).to be_nil
     expect(new_get.body).to be_nil
   end
