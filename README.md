@@ -30,7 +30,10 @@ Folgende Werte sind automatisch gesetzt:
 :method => :get,
 :open_timeout => 5,
 :read_timeout => 5,
-:max_redirects => 1,
+:max_redirects => 1
+
+zusätzlich kann man für die Authorisierung auch :user und :password übergeben. Dieser werde nicht automatisch gesetzt.
+new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)
 
 new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0}) 
 * bewirkt zb das bei einem 301,302, oder 307 nicht automatisch der neuen url gefolgt wird
@@ -39,7 +42,7 @@ new_connect = RestclientCommunicator::Communication.new(url, {:open_timeout => 1
 * bewirkt zb das bereits nach 1 Sekunde das timeout erreicht ist zum öffnen der Verbindung, aber erst nach 30 Sekunden der response
 
 
-Weitere Funktionen siehe in Testfällen unter https://github.com/olafkaderka/restclient_communicator/blob/master/spec/restclient_communicator_spec.rb
+Weitere Funktionen siehe in des respec Tests unter https://github.com/olafkaderka/restclient_communicator/blob/master/spec/restclient_communicator_spec.rb
 
 ## Development
 
