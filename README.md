@@ -55,6 +55,19 @@ zusätzlich kann man für die Authorisierung auch :user und :password übergeben
 
 Weitere Funktionen siehe in des rspec Tests unter https://github.com/olafkaderka/restclient_communicator/blob/master/spec/restclient_communicator_spec.rb
 
+## Errorcodes
+* "CE9901": Kommunikationsfehler Unauthorized
+* "CE9902": Kommunikationsfehler Forbidden
+* "CE9903": Kommunikationsfehler ImATeapot
+* "CE9904": Kommunikationsfehler Not Found
+* "CE9905": Kommunikationsfehler Timeout
+* "CE9906": Kommunikationsfehler Broking Connection
+* "CE9907": Kommunikationsfehler SSLCertificate nicht verifiziert
+* "CE9908": Kommunikationsfehler PayloadTooLarge
+* "CE9909": Kommunikationsfehler RequestURITooLong
+* "CE9910": Kommunikationsfehler RequestedRangeNotSatisfiable
+* "CE9999": Url Fehler
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
