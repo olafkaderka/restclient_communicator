@@ -21,9 +21,8 @@ Or install it yourself as:
 ## Usage
 
 new_connect = RestclientCommunicator::Communication.new(url)
-
 das object new_connect hat dann folgende attribute:
-:errorcode, :response, :http_code, :body, :options
+	* :errorcode, :response, :http_code, :body, :options
 
 Es werden zahlreiche Fehler abgefangen und man kann das Verhalten auch ändern durch Optionen die man übergeben kann. 
 Folgende Werte sind automatisch gesetzt:
@@ -33,16 +32,15 @@ Folgende Werte sind automatisch gesetzt:
 :max_redirects => 1
 
 zusätzlich kann man für die Authorisierung auch :user und :password übergeben. Dieser werde nicht automatisch gesetzt.
-new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)
+**new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)**
 
-new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0}) 
+**new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0})**
 * bewirkt zb das bei einem 301,302, oder 307 nicht automatisch der neuen url gefolgt wird
 
-new_connect = RestclientCommunicator::Communication.new(url, {:open_timeout => 1, :read_timeout => 30) 
+**new_connect = RestclientCommunicator::Communication.new(url, {:open_timeout => 1, :read_timeout => 30)**
 * bewirkt zb das bereits nach 1 Sekunde das timeout erreicht ist zum öffnen der Verbindung, aber erst nach 30 Sekunden der response
 
-
-Weitere Funktionen siehe in des respec Tests unter https://github.com/olafkaderka/restclient_communicator/blob/master/spec/restclient_communicator_spec.rb
+Weitere Funktionen siehe in des rspec Tests unter https://github.com/olafkaderka/restclient_communicator/blob/master/spec/restclient_communicator_spec.rb
 
 ## Development
 
