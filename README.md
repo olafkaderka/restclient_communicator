@@ -44,6 +44,7 @@ zusätzlich kann man für die Authorisierung auch :user und :password übergeben
 Vom Prinzip ist bei einem erfolgreichen :get
 * new_connect.errorcode.nil?
 * new_connect.body => das ergebnis was man weiter verbeiten kann zb mit JSON.parse(new_connect.body)
+* if new_connect.errorcode.nil? and body = new_get.body ....
 
 
 Weitere Funktionen siehe in des rspec Tests unter https://github.com/olafkaderka/restclient_communicator/blob/master/spec/restclient_communicator_spec.rb
