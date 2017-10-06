@@ -10,6 +10,7 @@ module RestclientCommunicator
 
     attr_accessor :errorcode, :response, :http_code, :body, :options
 
+    VALID_SCHEMES = ["http","https"]
 
     def initialize(url, options={})
       return if url.blank?
@@ -21,15 +22,37 @@ module RestclientCommunicator
         :raw_response => false,
       }
       @options = options.reverse_merge(default_options)
-      #muss ich jetztz bereinigen
-      @options[:url] = Addressable::URI.parse("#{url}").normalize.to_str
       @errorcode, @response, @http_code, @body = nil
-      start
+      self.check_url(url)
+    end
 
+    def check_url(url)
+      begin
+
+        new_url = Addressable::URI.parse(url)
+        #muss ich jetztz bereinigen, da dieser wert 1:1 an restclient geht
+        if new_url
+
+          if !VALID_SCHEMES.include? new_url.scheme
+            @errorcode = "CE9991"
+            return
+          end
+          
+          options[:url] = new_url.normalize.to_str
+          self.start 
+        else
+          @errorcode = "CE9993"
+        end
+      rescue Addressable::URI::TypeError, Addressable::URI::NoMethodError, Addressable::URI::InvalidURIError => e
+        @errorcode = "CE9999"
+      end
     end
 
     def start     
       begin
+      
+
+
         #for result codes between 200 and 207, a RestClient::Response will be returned
         #for result codes 301, 302 or 307, the redirection will be followed if the request is a GET or a HEAD
         #for result code 303, the redirection will be followed and the request transformed into a GET
@@ -59,6 +82,7 @@ module RestclientCommunicator
       rescue RestClient::MovedPermanently, RestClient::Found, RestClient::TemporaryRedirect => e
         @response = e.response
         @http_code = @response.code
+        @errorcode = "CE9920" if @options[:max_redirects] == 0
         #case @options[:method]
         #when :post
         #todo das ist nich nicht so oaky

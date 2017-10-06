@@ -6,6 +6,26 @@ RSpec.describe RestclientCommunicator do
     expect(RestclientCommunicator::VERSION).not_to be nil
   end
 
+
+  it "URL FEHLER TYPE EROOR" do 
+    new_get = RestclientCommunicator::Communication.new(1)
+    expect(new_get.errorcode).to eq("CE9999")
+    expect(new_get.http_code).to be_nil
+    expect(new_get.response).to be_nil
+    expect(new_get.body).to be_nil
+  end
+
+
+  it "URL FEHLER Schema" do 
+    url = "httf://httpstat.uscas/200"
+    new_get = RestclientCommunicator::Communication.new(url)
+    expect(new_get.errorcode).to eq("CE9991")
+    expect(new_get.http_code).to be_nil
+    expect(new_get.response).to be_nil
+    expect(new_get.body).to be_nil
+  end
+
+
   it "SEITE VORHANDEN 200" do 
     url = "http://httpstat.us/200"
     new_get = RestclientCommunicator::Communication.new(url)
@@ -39,7 +59,7 @@ RSpec.describe RestclientCommunicator do
  	#er muss der seite autoamtsich folgen
     url = "http://httpstat.us/301"
     new_get = RestclientCommunicator::Communication.new(url,{:max_redirects => 0})
-    expect(new_get.errorcode).to be_nil
+    expect(new_get.errorcode).to eq("CE9920")
     expect(new_get.http_code).to eq(301)
     expect(new_get.body).to be_nil
     #es kommt der response <RestClient::Response 301 "301 Moved P..."
