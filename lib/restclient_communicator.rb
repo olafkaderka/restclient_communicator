@@ -70,6 +70,7 @@ module RestclientCommunicator
         @http_code = e.response.code
         @errorcode = "CE9902"
       rescue RestClient::ImATeapot => e
+        @http_code = e.response.code
         @errorcode = "CE9903"
       rescue RestClient::NotFound => e
         @http_code = e.response.code
