@@ -120,6 +120,17 @@ RSpec.describe RestclientCommunicator do
   end
 
 
+
+  it "SEITE 413 RequestEntityTooLarge" do 
+  #er muss der seite autoamtsich folgen
+    url = "http://httpstat.us/413"
+    new_get = RestclientCommunicator::Communication.new(url)
+    expect(new_get.errorcode).to eq("CE9908")
+    expect(new_get.http_code).to eq(413)
+    expect(new_get.response).to be_nil
+    expect(new_get.body).to be_nil
+  end
+
   it "SEITE NICHT VORHANDEN" do 
     url = "https://www.google.de/hallo.html"
     new_get = RestclientCommunicator::Communication.new(url)

@@ -79,9 +79,6 @@ module RestclientCommunicator
             end
           end 
         end
-      rescue RestClient::NoMethodError => e
-        #dann stimmt was mit der url nicht
-        @errorcode = "CE9999"
       rescue RestClient::MovedPermanently, RestClient::Found, RestClient::TemporaryRedirect => e
         @response = e.response
         @http_code = @response.code
@@ -103,11 +100,20 @@ module RestclientCommunicator
         @http_code = e.response.code
         @errorcode = "CE9904"
       rescue RestClient::Exceptions::Timeout => e
+        #könnte man auch noch unterscheiden RestClient::Exceptions::Timeout::OpenTimeout, RestClient::Exceptions::Timeout::ReadTimeout
+        #https://github.com/rest-client/rest-client/blob/master/lib/restclient/exceptions.rb
         @errorcode = "CE9905"
       rescue RestClient::ServerBrokeConnection  => e
-        errorcode = "CE9906"
+        @errorcode = "CE9906"
       rescue RestClient::SSLCertificateNotVerified => e
-        errorcode = "CE9907"
+        @errorcode = "CE9907"
+      rescue RestClient::PayloadTooLarge => e
+        @errorcode = "CE9908"
+        @http_code = e.response.code
+      rescue RestClient::RequestURITooLong => e
+        @errorcode = "CE9909" 
+      rescue RestClient::RequestedRangeNotSatisfiable => e
+        @errorcode = "CE9910"      
       end
     end
   end
