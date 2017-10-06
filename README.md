@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'restclient_communicator'
+gem 'restclient_communicator',:git => 'https://github.com/olafkaderka/restclient_communicator.git', :branch => 'master'
 ```
 
 And then execute:
@@ -22,7 +22,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+new_connect = RestclientCommunicator::Communication.new(url)
+
+das object new_connect hat dann folgende attribute:
+:errorcode, :response, :http_code, :body, :options
+
+Es werden zahlreiche Fehler abgefangen und man kann das Verhalten auch ändern durch Optionen die man übergeben kann. 
+Folgende Werte sind automatisch gesetzt:
+:method => :get,
+:open_timeout => 5,
+:read_timeout => 5,
+:max_redirects => 1,
+
+new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0}) 
+* bewirkt zb das bei einem 301,302, oder 307 nicht automatisch der neuen url gefolgt wird
+
+new_connect = RestclientCommunicator::Communication.new(url, {:open_timeout => 1, :read_timeout => 30) 
+* bewirkt zb das bereits nach 1 Sekunde das timeout erreicht ist zum öffnen der Verbindung, aber erst nach 30 Sekunden der response
+
+
 
 ## Development
 
