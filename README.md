@@ -32,6 +32,7 @@ Folgende Werte sind automatisch gesetzt:
 :max_redirects => 1
 
 zusätzlich kann man für die Authorisierung auch :user und :password übergeben. Dieser werde nicht automatisch gesetzt.
+
 **new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)**
 
 **new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0})**
