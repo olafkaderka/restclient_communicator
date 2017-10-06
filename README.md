@@ -41,6 +41,11 @@ zusätzlich kann man für die Authorisierung auch :user und :password übergeben
 **new_connect = RestclientCommunicator::Communication.new(url, {:open_timeout => 1, :read_timeout => 30)**
 * bewirkt zb das bereits nach 1 Sekunde das timeout erreicht ist zum öffnen der Verbindung, aber erst nach 30 Sekunden der response
 
+Vom Prinzip ist bei einem erfolgreichen :get
+* new_connect.errorcode.nil?
+* new_connect.body => das ergebnis was man weiter verbeiten kann zb mit JSON.parse(new_connect.body)
+
+
 Weitere Funktionen siehe in des rspec Tests unter https://github.com/olafkaderka/restclient_communicator/blob/master/spec/restclient_communicator_spec.rb
 
 ## Development
