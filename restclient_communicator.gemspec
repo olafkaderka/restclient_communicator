@@ -6,12 +6,12 @@ require "restclient_communicator/version"
 Gem::Specification.new do |spec|
   spec.name          = "restclient_communicator"
   spec.version       = RestclientCommunicator::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
+  spec.authors       = ["Olaf Kaderka"]
+  spec.email         = ["okaderka@yahoo.de"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Hilfsklasse für die Kommunikation ueber RestClient}
+  spec.description   = %q{Gibt nicht viel mehr darüber zu erzaehlen}
+  spec.homepage      = "https://github.com/olafkaderka/restclient_communicator"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -33,4 +33,16 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+
+
+  #communication
+  #fuer sauber uris https://github.com/sporkmonger/addressable
+  spec.add_dependency "addressable"
+
+  #for mattr_accessor, reverse_merge
+  spec.add_dependency "activesupport", '>= 4.0'
+
+  #https://github.com/rest-client/rest-client
+  spec.add_dependency "rest-client"
+
 end
