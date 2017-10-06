@@ -20,4 +20,6 @@ RSpec.describe RestclientCommunicator do
   end
 
 
+  #unauthoriosiert etc werden in den jeweiligen app getestet da hier ja dann 
+
 end
