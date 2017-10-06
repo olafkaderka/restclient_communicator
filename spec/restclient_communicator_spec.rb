@@ -113,7 +113,4 @@ RSpec.describe RestclientCommunicator do
     expect(new_get.http_code).to be_nil
   end
 
-
-  #unauthoriosiert etc werden in den jeweiligen app getestet da hier ja dann 
-
 end
