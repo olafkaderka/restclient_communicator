@@ -37,7 +37,7 @@ module RestclientCommunicator
             @errorcode = "CE9991"
             return
           end
-          
+
           options[:url] = new_url.normalize.to_str
           self.start 
         else
@@ -79,6 +79,9 @@ module RestclientCommunicator
             end
           end 
         end
+      rescue RestClient::NoMethodError => e
+        #dann stimmt was mit der url nicht
+        @errorcode = "CE9999"
       rescue RestClient::MovedPermanently, RestClient::Found, RestClient::TemporaryRedirect => e
         @response = e.response
         @http_code = @response.code
