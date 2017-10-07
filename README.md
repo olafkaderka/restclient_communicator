@@ -42,11 +42,10 @@ Folgende Werte sind automatisch gesetzt:
 * :read_timeout => 5,
 * :max_redirects => 1 (#for result codes 301, 302 or 307, the redirection will be followed if the request is a GET or a HEAD)
 
-zusätzlich kann man für die Authorisierung auch :user und :password übergeben. Dieser werde nicht automatisch gesetzt.
-
-**new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)**
 Es werdenn alle Werte die als Hash übergeben werden 1:1 an die Funktion RestClient::Request.execute weitergeben siehe [rest_client](https://github.com/rest-client/rest-client)
 
+So kann man u.a. auch Authorierungs parameter , Headerparameter etc übergeben.
+**new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)**
 
 **new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0})**
 * bewirkt zb das bei einem 301,302, oder 307 nicht automatisch der neuen url gefolgt wird und ein Eroorcode ausgegeben wird
