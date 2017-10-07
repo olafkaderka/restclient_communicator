@@ -8,7 +8,7 @@ module RestclientCommunicator
   # Your code goes here...
   class Communication
 
-    attr_accessor :errorcode, :response, :http_code, :body, :options
+    attr_accessor :errorcode, :response, :http_code, :body, :options, :file
 
     VALID_SCHEMES = ["http","https"]
 
@@ -22,7 +22,7 @@ module RestclientCommunicator
         :raw_response => false,
       }
       @options = options.reverse_merge(default_options)
-      @errorcode, @response, @http_code, @body = nil
+      @errorcode, @response, @http_code, @body, @file = nil
       self.check_url(url)
     end
 
@@ -62,7 +62,16 @@ module RestclientCommunicator
         @http_code = @response.code
         case @http_code
         when 200,207
-          @body = @response.body
+          
+          #https://github.com/rest-client/rest-client/blob/master/lib/restclient/raw_response.rb
+          #In addition, if you do not use the response as a string, you can access
+          #a Tempfile object at res.file, which contains the path to the raw
+          #downloaded request body.
+          if @options[:raw_response]
+            @file = @response.file
+          else
+            @body = @response.body
+          end
         else
           case @options[:method]
           when :get, :head

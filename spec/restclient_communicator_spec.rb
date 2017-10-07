@@ -165,4 +165,12 @@ RSpec.describe RestclientCommunicator do
     expect(new_get.http_code).to be_nil
   end
 
+  it "RAW RESPONSE TEST" do 
+    new_get = RestclientCommunicator::Communication.new("https://github.com/fourcube/goiban-data-loader/raw/master/data/li.xlsx", {:raw_response => true, :open_timeout => 5, :read_timeout => 30})
+    expect(new_get.errorcode).to be_nil
+    expect(new_get.http_code).to eq(200)
+    expect(new_get.file).not_to be_nil  
+  end
+
+
 end
