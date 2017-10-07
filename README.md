@@ -1,6 +1,6 @@
 # RestclientCommunicator
 
-Dient zur Kommunikation über die gem rest_client
+Hilfsklasse zur Kommunikation mit der Gem [rest_client](https://github.com/rest-client/rest-client)
 
 ## Installation
 
@@ -45,6 +45,8 @@ Folgende Werte sind automatisch gesetzt:
 zusätzlich kann man für die Authorisierung auch :user und :password übergeben. Dieser werde nicht automatisch gesetzt.
 
 **new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)**
+Es werdenn alle Werte die als Hash übergeben werden 1:1 an die Funktion RestClient::Request.execute weitergeben siehe [rest_client](https://github.com/rest-client/rest-client)
+
 
 **new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0})**
 * bewirkt zb das bei einem 301,302, oder 307 nicht automatisch der neuen url gefolgt wird und ein Eroorcode ausgegeben wird
