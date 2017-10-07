@@ -43,12 +43,13 @@ Folgende Werte sind automatisch gesetzt:
 * :max_redirects => 1 (#for result codes 301, 302 or 307, the redirection will be followed if the request is a GET or a HEAD)
 
 Es werdenn alle Werte die als Hash übergeben werden 1:1 an die Funktion RestClient::Request.execute weitergeben siehe [rest_client](https://github.com/rest-client/rest-client)
-
 So kann man u.a. auch Authorierungs parameter , Headerparameter etc übergeben.
+
 **new_connect = RestclientCommunicator::Communication.new(url, {:user => xxxx, :password => xxxx)**
+* Authorisierung (fals erforderlich)
 
 **new_connect = RestclientCommunicator::Communication.new(url, {:max_redirects => 0})**
-* bewirkt zb das bei einem 301,302, oder 307 nicht automatisch der neuen url gefolgt wird und ein Eroorcode ausgegeben wird
+* bewirkt zb das bei einem 301,302, oder 307 nicht automatisch der neuen url gefolgt wird und ein Errorcode ausgegeben wird
 
 **new_connect = RestclientCommunicator::Communication.new(url, {:open_timeout => 1, :read_timeout => 30)**
 * bewirkt zb das bereits nach 1 Sekunde das timeout erreicht ist zum öffnen der Verbindung, aber erst nach 30 Sekunden der response
